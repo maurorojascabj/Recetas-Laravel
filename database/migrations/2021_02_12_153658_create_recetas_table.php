@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use League\CommonMark\Extension\Table\Table;
 
 class CreateRecetasTable extends Migration
 {
@@ -13,9 +14,21 @@ class CreateRecetasTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('categoria_receta', function(Blueprint $table){
+            $table->id();
+            $table->string('nombre');
+            $table->timestamps();
+        });
+
         Schema::create('recetas', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
+            $table->text('ingredientes');
+            $table->text('preparacion');
+            $table->string('imagen');
+            $table->foreignId('user_id')->references('id')->on('users')->comment('El usuario que crea la receta');
+            $table->foreignId('categoria_id')->index('id')->on('categoria_receta')->comment('La categoria a la que pertenece la receta');
             $table->timestamps();
         });
     }
@@ -27,6 +40,7 @@ class CreateRecetasTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('categoria_receta');
         Schema::dropIfExists('recetas');
     }
 }
