@@ -8,6 +8,8 @@
 @section('content')
 
    <h2 class="text-center mb-5">Crear nueva receta</h2>
+
+
    <div class="row justify-content-center mt-5">
         <div class="col-md-8">
             <form action="{{route('recetas.store')}}" method="post" novalidate>
@@ -29,6 +31,29 @@
                         </span>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                    <label for="categoria">
+                        Categoria:
+                    </label>
+                    <select class="form-control @error('categoria') is-invalid @enderror" name="categoria" id="categoria">
+                        <option value="">--Seleccione una categoría--</option>
+                        @foreach($categorias as $id => $categoria)
+                            <option 
+                                value="{{$id}}" 
+                                {{old('categoria') == $id ? 'selected' : ''}}
+                            >
+                                {{$categoria}}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('categoria')
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                    @enderror
+                </div>
+
                 <div class="form-group">
                     <input class="btn btn-primary" type="submit" value="Agregar receta">
                 </div>
