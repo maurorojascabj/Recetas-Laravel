@@ -22,7 +22,7 @@
                         id="titulo"  
                         placeholder="Título Receta"
                         value={{old('titulo')}}
-                    />
+                    >
                     @error('titulo')
                         <span class="invalid-feedback d-block" role="alert">
                             <strong>{{$message}}</strong>
