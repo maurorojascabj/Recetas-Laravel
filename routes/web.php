@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\recetaController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
