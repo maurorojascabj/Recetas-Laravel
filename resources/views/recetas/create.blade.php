@@ -42,12 +42,12 @@
                     </label>
                     <select class="form-control @error('categoria') is-invalid @enderror" name="categoria" id="categoria">
                         <option value="">--Seleccione una categoría--</option>
-                        @foreach($categorias as $id => $categoria)
+                        @foreach($categorias as $categoria)
                             <option 
-                                value="{{$id}}" 
-                                {{old('categoria') == $id ? 'selected' : ''}}
+                                value="{{$categoria->id}}" 
+                                {{old('categoria') == $categoria->id ? 'selected' : ''}}
                             >
-                                {{$categoria}}
+                                {{$categoria->nombre}}
                             </option>
                         @endforeach
                     </select>
