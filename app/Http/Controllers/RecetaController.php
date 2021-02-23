@@ -114,7 +114,9 @@ class RecetaController extends Controller
      */
     public function edit(Receta $receta)
     {
-        //
+        $categorias = CategoriaReceta::all(['id', 'nombre']);
+   
+        return view('recetas.edit', compact('categorias', 'receta'));
     }
 
     /**
