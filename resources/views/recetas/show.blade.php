@@ -10,16 +10,19 @@
         </div>
         <div class="receta-meta mt-2">
             <p>
-                <span class="font-weight-bond text-primary">
-                    Escrito en:
-                </span>
+                <span class="font-weight-bond text-primary">Escrito en:</span>
                 {{$receta->categoria->nombre}}
             </p>
             <p>
-                <span class="font-weight-bond text-primary">
-                    Autor:
-                </span>
+                <span class="font-weight-bond text-primary">Autor:</span>
                 {{$receta->user_id}}
+            </p>
+            <p>
+                <span class="font-weight-bond text-primary">Fecha:</span>
+                @php
+                  $fecha = $receta->created_at  
+                @endphp
+                <fecha-receta fecha="{{$fecha}}"></fecha-receta>
             </p>
             <div class="ingredientes">
                 <h2 class="my-3 text-primary">Ingredientes</h2>
