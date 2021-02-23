@@ -15,7 +15,7 @@
             </p>
             <p>
                 <span class="font-weight-bond text-primary">Autor:</span>
-                {{$receta->user_id}}
+                {{$receta->autor->name}}
             </p>
             <p>
                 <span class="font-weight-bond text-primary">Fecha:</span>
