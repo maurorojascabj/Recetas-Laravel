@@ -80,7 +80,7 @@ class RecetaController extends Controller
         // ]);
 
         //Se almacena en la BD (con modelo)
-        auth()->user()->recetas()->create([
+        auth()->user()->Receta->create([
             'titulo' => $data['titulo'],
             'ingredientes' => $data['ingredientes'],
             'preparacion' => $data['preparacion'],
