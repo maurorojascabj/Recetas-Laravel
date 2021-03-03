@@ -16,8 +16,10 @@
 
    <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <form action="{{route('recetas.store')}}" method="post" enctype="multipart/form-data" novalidate>
+            <form action="{{route('recetas.update', ['receta' => $receta->id])}}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf {{--Compara con csrf de app.blade, para poder realizar el post del form--}}
+                @method('PUT') {{--Para permitir una peticion put en html--}}
+
                 <div class="form-group">
                     <label for="titulo">Título Receta:</label>
                     <input 
@@ -101,12 +103,12 @@
                     <div class="mt-4">
                         <p>Imagen Actual:</p>
                         <img src="/storage/{{$receta->imagen}}" style="width:300px">
+                        @error('imagen')
+                            <span class="invalid-feedback d-block" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
-                    @error('imagen')
-                        <span class="invalid-feedback d-block" role="alert">
-                            <strong>{{$message}}</strong>
-                        </span>
-                    @enderror
                 </div>
 
                 <div class="form-group">
