@@ -80,7 +80,7 @@ class RecetaController extends Controller
         // ]);
 
         //Se almacena en la BD (con modelo)
-        auth()->user()->Receta->create([
+        auth()->user()->recetas()->create([
             'titulo' => $data['titulo'],
             'ingredientes' => $data['ingredientes'],
             'preparacion' => $data['preparacion'],
@@ -164,7 +164,6 @@ class RecetaController extends Controller
      */
     public function destroy(Receta $receta)
     {
-        return "eliminando...";
         //Ejecuta el policy
         $this->authorize('delete', $receta);
         //Elimina la receta

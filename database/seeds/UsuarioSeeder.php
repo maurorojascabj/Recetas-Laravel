@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\Types\Null_;
+use App\User;
 
 class UsuarioSeeder extends Seeder
 {
@@ -14,29 +14,28 @@ class UsuarioSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        $user = User::create([
             'name' => 'Mauro',
             'email' => 'correo@correo.com',
             'password' => Hash::make('12345678'),
             'url' => null,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('users')->insert([
+        $user->perfil()->create();
+
+        $user2 = User::create([
             'name' => 'Anto',
             'email' => 'correo2@correo.com',
             'password' => Hash::make('12345678'),
             'url' => null,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        DB::table('users')->insert([
+        $user2->perfil()->create();
+
+        $user3 = User::create([
             'name' => 'Nico',
             'email' => 'correo3@correo.com',
             'password' => Hash::make('12345678'),
             'url' => null,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
         ]);
+        $user3->perfil()->create();
     }
 }
