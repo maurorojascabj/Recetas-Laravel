@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Perfil;
+use App\Receta;
 use Illuminate\Http\Request;
 
 class PerfilController extends Controller
@@ -52,7 +53,10 @@ class PerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        return view('perfiles.show')->with('perfil', $perfil);
+        //Obtener las recetas con paginación
+        $recetas = Receta::where('user_id', $perfil->user_id)->paginate(4);
+        return view('perfiles.show', compact('perfil', 'recetas'));
+        // return view('perfiles.show')->with('perfil', $perfil);
     }
 
     /**
