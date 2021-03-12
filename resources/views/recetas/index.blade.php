@@ -1,9 +1,7 @@
  @extends('layouts.app')
 
  @section('buttons')
-    <a class="btn btn-outline-primary text-uppercase font-weight-bold mr-2" href="{{ route('recetas.create') }}">Crear receta</a>
-    <a class="btn btn-outline-info text-uppercase font-weight-bold mr-2" href="{{ route('perfiles.edit', ['perfil' => Auth::user()->id]) }}">Editar perfil</a>
-    <a class="btn btn-outline-success text-uppercase font-weight-bold mr-2" href="{{ route('perfiles.show', ['perfil' => Auth::user()->id]) }}">Ver perfil</a>
+    @include('ui/navigation')
 @endsection
 
  @section('content')
