@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PerfilController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,6 +63,9 @@ class PerfilController extends Controller
      */
     public function edit(Perfil $perfil)
     {
+        //Ejecutamos el policy
+        $this->authorize('view', $perfil);
+        
         return view('perfiles.edit', compact('perfil'));
     }
 
@@ -69,6 +78,9 @@ class PerfilController extends Controller
      */
     public function update(Request $request, Perfil $perfil)
     {
+        //Ejecutamos el policy
+        $this->authorize('update', $perfil);
+
         //Validar
         $data = request()->validate([
             'nombre' => 'required',
