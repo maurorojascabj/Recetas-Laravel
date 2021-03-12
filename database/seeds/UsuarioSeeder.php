@@ -18,7 +18,7 @@ class UsuarioSeeder extends Seeder
             'name' => 'Mauro',
             'email' => 'correo@correo.com',
             'password' => Hash::make('12345678'),
-            'url' => null,
+            'url' => 'wwww.maurorojas.com',
         ]);
         $user->perfil()->create();
 

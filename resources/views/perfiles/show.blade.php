@@ -1,0 +1,23 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                {{-- Imagen del Perfil --}}
+                @if($perfil->imagen)
+                    <img src="/storage/{{$perfil->imagen}}" class="w-50 rounded-circle " alt="imagen chef" style="width:100px">
+                @endif
+            </div>
+            <div class="col-md-7 mt-5 mt-md-0">
+                <h2 class="text-center text-primary mb-2">
+                    {{$perfil->usuario->name}}
+                </h2>
+                <a href="{{$perfil->usuario->url}}">Visitar Sitio Web</a>
+                <div class="biografia">
+                    {!!$perfil->biografia !!}
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

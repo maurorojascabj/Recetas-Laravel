@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Perfil extends Model
 {
-    /**Relacion 1:1 - hasOne -> Un perfil tiene asociado un usuario */
+    /**Relacion 1:1 - belongsTio -> Un perfil pertenece a un usuario */
     public function usuario(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -46,7 +46,7 @@ class PerfilController extends Controller
      */
     public function show(Perfil $perfil)
     {
-        //
+        return view('perfiles.show')->with('perfil', $perfil);
     }
 
     /**
@@ -57,7 +57,7 @@ class PerfilController extends Controller
      */
     public function edit(Perfil $perfil)
     {
-        //
+        return view('perfiles.edit', compact('perfil'));
     }
 
     /**
@@ -69,7 +69,40 @@ class PerfilController extends Controller
      */
     public function update(Request $request, Perfil $perfil)
     {
-        //
+        //Validar
+        $data = request()->validate([
+            'nombre' => 'required',
+            'url' => 'required',
+            'biografia' => 'required'
+            
+        ]);
+        //Si el usuario sube una imagen
+        if($request['imagen']) {
+            //Obtenemos la ruta de la imagen
+            $ruta_imagen = $request['imagen']->store('upload-perfiles','public');
+
+            //Crear un arreglo de la imagen
+            $array_imagen = ['imagen' => $ruta_imagen];
+        };
+        
+        //Asignar nombre y url
+        auth()->user()->url = $data['url'];
+        auth()->user()->name = $data['nombre'];
+        auth()->user()->save();
+        
+        //Eliminar nombre y url
+        unset($data['url']);
+        unset($data['nombre']);
+        // dd($data);
+        
+        //Guardar la información
+        //Asignar biografia e imagen
+        auth()->user()->perfil()->update( array_merge(
+            $data,
+            $array_imagen ?? []
+        ) );
+        //Redireccionar
+        return redirect()->action('RecetaController@index');
     }
 
     /**
