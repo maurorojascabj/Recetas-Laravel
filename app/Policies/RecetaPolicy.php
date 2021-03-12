@@ -30,7 +30,8 @@ class RecetaPolicy
      */
     public function view(User $user, Receta $receta)
     {
-        //
+        //Solo pueda ver la vista de edición el usuario que creo la receta
+        return $user->id === $receta->user_id;
     }
 
     /**
